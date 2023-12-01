@@ -1,0 +1,62 @@
+@startuml Diagrama
+
+'Facade (Structural Pattern)'
+class AudioFile {
+    - volume: float
+    - speed: float
+    - path: String
+    - fileName: String
+    - AudioProcessorComposer processorComposer;
+
+    + play(): void
+    + reset(): void
+    - applyEffects(buffer: byte[], bytesRead: int, format: AudioFormat): void
+    - AudioFile(volume: float, path: String, fileName: String)
+    - initialize(): void
+}
+
+'Composite (Structural Pattern)'
+class AudioProcessorComposer {
+    - ArrayList<AudioProcessor> processors
+    + AudioProcessorComposer()
+    + ArrayList<AudioProcessor> getProcessors()
+    + void setProcessors(ArrayList<AudioProcessor> processors)
+    + AudioProcessorComposer withReverb()
+    + AudioProcessorComposer withReverb(float delay)
+    + AudioProcessorComposer withPhaser()
+    + AudioProcessorComposer withPhaser(float modulationRate, float modulationDepth)
+    + AudioProcessorComposer withChorus()
+    + AudioProcessorComposer withChorus(float delay)
+    + AudioProcessorComposer withTremolo()
+    + void clearEffects()
+}
+
+'Factory (Creational Pattern)'
+class AudioFileFactory {
+    + loadAudioFile(path: String): AudioFile
+}
+
+'Strategy (Behavioral Pattern)'
+interface AudioProcessor {
+    + process(buffer: byte[], int bytesRead, AudioFormat format): void
+}
+
+class ReverbProcessor implements AudioProcessor {
+    + process
+}
+class ChorusProcessor implements AudioProcessor {
+    + process
+}
+class PhaserProcessor implements AudioProcessor {
+    + process
+}
+class TremoloProcessor implements AudioProcessor {
+    + process
+}
+
+'Association'
+AudioFileFactory --> AudioFile : 'creates' (1..1)
+AudioFile --> AudioProcessorComposer : 'uses' (1..1)
+AudioProcessorComposer --> AudioProcessor : (0..*)
+
+@enduml
