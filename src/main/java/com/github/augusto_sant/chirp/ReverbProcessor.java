@@ -3,10 +3,19 @@ package com.github.augusto_sant.chirp;
 import javax.sound.sampled.AudioFormat;
 import java.util.Arrays;
 
+/**
+ * A Java class implementing the AudioProcessor interface for reverb audio processing.
+ */
 public class ReverbProcessor implements AudioProcessor {
 
+    /** The delay time for the reverb effect. */
     private float delay;
 
+    /**
+     * Constructs a ReverbProcessor with the specified delay time.
+     *
+     * @param delay The delay time for the reverb effect.
+     */
     public ReverbProcessor(float delay){
         this.delay = delay;
     }

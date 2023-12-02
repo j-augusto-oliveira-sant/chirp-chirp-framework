@@ -6,29 +6,33 @@ class AudioFile {
     - speed: float
     - path: String
     - fileName: String
-    - AudioProcessorComposer processorComposer;
+    - processorComposer: AudioProcessorComposer
 
     + play(): void
+    + play(durationInSeconds: int): void
+    + save(outputFilePath: String, durationInSeconds: int): void
+    + save(durationInSeconds: int): void
+    - saveAudioFile(outputFilePath: String, durationInSeconds: int, incomplete: boolean): void
+    - playAudioFile(durationInSeconds: int,incomplete: boolean): void
     + reset(): void
     - applyEffects(buffer: byte[], bytesRead: int, format: AudioFormat): void
     - AudioFile(volume: float, path: String, fileName: String)
-    - initialize(): void
 }
 
 'Composite (Structural Pattern)'
 class AudioProcessorComposer {
-    - ArrayList<AudioProcessor> processors
+    - processors: ArrayList<AudioProcessor>
     + AudioProcessorComposer()
-    + ArrayList<AudioProcessor> getProcessors()
-    + void setProcessors(ArrayList<AudioProcessor> processors)
-    + AudioProcessorComposer withReverb()
-    + AudioProcessorComposer withReverb(float delay)
-    + AudioProcessorComposer withPhaser()
-    + AudioProcessorComposer withPhaser(float modulationRate, float modulationDepth)
-    + AudioProcessorComposer withChorus()
-    + AudioProcessorComposer withChorus(float delay)
-    + AudioProcessorComposer withTremolo()
-    + void clearEffects()
+    + getProcessors(): ArrayList<AudioProcessor>
+    + setProcessors(ArrayList<AudioProcessor> processors): void
+    + withReverb(): AudioProcessorComposer
+    + withReverb(delay: float): AudioProcessorComposer
+    + withPhaser(): AudioProcessorComposer
+    + withPhaser(float modulationRate, float modulationDepth): AudioProcessorComposer
+    + withChorus(): AudioProcessorComposer
+    + withChorus(delay: float): AudioProcessorComposer
+    + withTremolo(): AudioProcessorComposer
+    + clearEffects(): void
 }
 
 'Factory (Creational Pattern)'

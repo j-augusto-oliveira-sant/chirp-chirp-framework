@@ -1,7 +1,14 @@
 package com.github.augusto_sant.chirp;
 import javax.sound.sampled.AudioFormat;
 
+/**
+ * A Java class implementing the AudioProcessor interface for tremolo audio processing.
+ */
 public class TremoloProcessor implements AudioProcessor {
+
+    /**
+     * Constructs a TremoloProcessor.
+     */
     public TremoloProcessor() {
     }
 

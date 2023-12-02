@@ -1,9 +1,19 @@
 package com.github.augusto_sant.chirp;
 import javax.sound.sampled.AudioFormat;
 import java.util.Arrays;
+
+/**
+ * A Java class implementing the AudioProcessor interface for chorus audio processing.
+ */
 public class ChorusProcessor implements AudioProcessor {
+    /** The delay time for the chorus effect. */
     private float delay;
 
+    /**
+     * Constructs a ChorusProcessor with the specified delay time.
+     *
+     * @param delay The delay time for the chorus effect.
+     */
     public ChorusProcessor(float delay){
         this.delay = delay;
     }
