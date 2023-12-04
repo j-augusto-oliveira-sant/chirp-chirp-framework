@@ -147,6 +147,15 @@ public class AudioFile {
         saveAudioFile(outputFilePath,0, false);
     }
 
+    /**
+     * Resets volume and speed.
+     *
+     */
+    public void reset(){
+        this.volume = 0f;
+        this.speed = 1f;
+    }
+
     private void saveAudioFile(String outputFilePath, int durationInSeconds, boolean incomplete)throws IOException, LineUnavailableException, UnsupportedAudioFileException{
         System.out.println("Saving audio file: " + outputFilePath);
         System.out.println(this.getVolumeInfo());
@@ -164,7 +173,6 @@ public class AudioFile {
         byte[] buffer;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            // Read and play the audio
             int bufferSize = (int) format.getSampleRate() * format.getFrameSize();
             buffer = new byte[bufferSize];
             int bytesRead;
@@ -251,12 +259,5 @@ public class AudioFile {
         }
     }
 
-    /**
-     * Resets volume and speed.
-     *
-     */
-    public void reset(){
-        this.volume = 0f;
-        this.speed = 1f;
-    }
+
 }

@@ -6,15 +6,16 @@ class AudioFile {
     - speed: float
     - path: String
     - fileName: String
+    - type: String
     - processorComposer: AudioProcessorComposer
 
     + play(): void
     + play(durationInSeconds: int): void
     + save(outputFilePath: String, durationInSeconds: int): void
     + save(durationInSeconds: int): void
+    + reset(): void
     - saveAudioFile(outputFilePath: String, durationInSeconds: int, incomplete: boolean): void
     - playAudioFile(durationInSeconds: int,incomplete: boolean): void
-    + reset(): void
     - applyEffects(buffer: byte[], bytesRead: int, format: AudioFormat): void
     - AudioFile(volume: float, path: String, fileName: String)
 }
@@ -24,11 +25,11 @@ class AudioProcessorComposer {
     - processors: ArrayList<AudioProcessor>
     + AudioProcessorComposer()
     + getProcessors(): ArrayList<AudioProcessor>
-    + setProcessors(ArrayList<AudioProcessor> processors): void
+    + setProcessors(processors: ArrayList<AudioProcessor>): void
     + withReverb(): AudioProcessorComposer
     + withReverb(delay: float): AudioProcessorComposer
     + withPhaser(): AudioProcessorComposer
-    + withPhaser(float modulationRate, float modulationDepth): AudioProcessorComposer
+    + withPhaser(modulationRate: float,modulationDepth: float): AudioProcessorComposer
     + withChorus(): AudioProcessorComposer
     + withChorus(delay: float): AudioProcessorComposer
     + withTremolo(): AudioProcessorComposer
@@ -38,11 +39,13 @@ class AudioProcessorComposer {
 'Factory (Creational Pattern)'
 class AudioFileFactory {
     + loadAudioFile(path: String): AudioFile
+    - extractFileName(path: String): String {
+    - extractType(path: String): String {
 }
 
 'Strategy (Behavioral Pattern)'
 interface AudioProcessor {
-    + process(buffer: byte[], int bytesRead, AudioFormat format): void
+    + process(buffer: byte[],bytesRead: int,format: AudioFormat): void
 }
 
 class ReverbProcessor implements AudioProcessor {
@@ -59,8 +62,8 @@ class TremoloProcessor implements AudioProcessor {
 }
 
 'Association'
-AudioFileFactory --> AudioFile : 'creates' (1..1)
-AudioFile --> AudioProcessorComposer : 'uses' (1..1)
-AudioProcessorComposer --> AudioProcessor : (0..*)
+AudioFileFactory --> AudioFile : creates > (1..*)
+AudioFile --> AudioProcessorComposer : uses > (1..1)
+AudioProcessorComposer --> AudioProcessor : uses > (0..*)
 
 @enduml

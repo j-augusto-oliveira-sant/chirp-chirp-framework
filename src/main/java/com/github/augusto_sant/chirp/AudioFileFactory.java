@@ -16,7 +16,7 @@ public class AudioFileFactory {
      * @param path The path of the audio file.
      * @return An instance of the {@link AudioFile} class representing the loaded audio file.
      */
-    public AudioFile loadAudioFile(String path) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public AudioFile loadAudioFile(String path) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
         float volume = 0f;
         float speed = 1f;
         String fileName = extractFileName(path);
@@ -24,6 +24,7 @@ public class AudioFileFactory {
         File file = new File(path);
         return new AudioFile(file, volume, speed, path, fileName,type);
     }
+
 
     /**
      * Extracts the file name without the extension from the given path.
