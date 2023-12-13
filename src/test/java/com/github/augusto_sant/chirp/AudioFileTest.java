@@ -16,7 +16,7 @@ public class AudioFileTest extends TestCase {
     AudioFileFactory audioFileFactory = new AudioFileFactory();
 
     @After
-    public void tearDown(){
+    void tearDown(){
         File directory = new File("src/test/temp");
         File[] files = directory.listFiles();
         if (files != null) {
@@ -36,10 +36,10 @@ public class AudioFileTest extends TestCase {
         }
         long endTime = System.currentTimeMillis();
         long elapsedTimeSeconds = (endTime - startTime) / 1000;
-        assertEquals(5, elapsedTimeSeconds, 1); // Allow a 1-second difference for flexibility
+        assertEquals(5, elapsedTimeSeconds, 1); // permite um segundo de diferença
     }
 
-    public void testSave() throws IOException {
+    public void testSave() {
         AudioFile audioFile = null;
         try {
              audioFile = audioFileFactory.loadAudioFile("src/test/resources/sample.wav");

@@ -19,7 +19,7 @@ public class Example
 //        example3();
     }
 
-    public static void example1() throws LineUnavailableException, IOException, UnsupportedAudioFileException{
+    static void example1() throws LineUnavailableException, IOException, UnsupportedAudioFileException{
         // Basics
         AudioFileFactory audioFileFactory = new AudioFileFactory();
         AudioFile file = audioFileFactory.loadAudioFile("src/main/resources/sample.wav");
@@ -30,7 +30,7 @@ public class Example
         file.play();
     }
 
-    public static void example2() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+    static void example2() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         // Effects on Midi file
         AudioFileFactory audioFileFactory = new AudioFileFactory();
         AudioFile file = audioFileFactory.loadAudioFile("src/main/resources/MIDI_sample.mid");
@@ -43,7 +43,7 @@ public class Example
         file.play(10);
     }
 
-    public static void example3() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+    static void example3() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         // Effects on WAV file
         AudioFileFactory audioFileFactory = new AudioFileFactory();
         AudioFile file = audioFileFactory.loadAudioFile("src/main/resources/sample.wav");
